@@ -8,3 +8,4 @@ Go HTTP server with endpoints for each of the challenges in advent 2019! Availab
 
 e.g. `GET /days/1/challenges/1`
 
+further edit the readme
