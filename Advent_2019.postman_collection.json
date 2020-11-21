@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "58d1f3bf-1087-427c-8dec-0e34602a0d21",
+		"name": "Advent 2019",
+		"description": "Go server accepting input and returning answers for Advent of Code 2019 problems: https://adventofcode.com/2019",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Days",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9999/days",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"days"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get challenges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9999/days/:dayID/challenges",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"days",
+						":dayID",
+						"challenges"
+					],
+					"variable": [
+						{
+							"key": "dayID",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a challenge answer",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:9999/days/:dayID/challenges/:challengeID",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"days",
+						":dayID",
+						"challenges",
+						":challengeID"
+					],
+					"variable": [
+						{
+							"key": "dayID",
+							"value": "1"
+						},
+						{
+							"key": "challengeID",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
