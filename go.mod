@@ -1,4 +1,4 @@
-module advent2019/hello
+module github.com/sesquipedalian-dev/advent2019
 
 go 1.15
 

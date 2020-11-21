@@ -2,10 +2,10 @@ PWD := $(shell pwd)
 #GOPATH := $(shell go env GOPATH)
 
 build:
-	@GO111MODULE=on go build -mod=vendor -o $(PWD)/advent cmd/server/main.go
+	go build -o $(PWD)/advent ./cmd/server
 
 test:
-	go test -mod=vendor . cmd/server
+	go test . cmd/server
 
 .PHONY: vendor
 vendor:
