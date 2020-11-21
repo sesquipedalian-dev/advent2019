@@ -53,7 +53,7 @@ func daysHandler(days *core.Days) func(echo.Context) error {
 
 func challengesHandler(days *core.Days) func(echo.Context) error {
 	return func(c echo.Context) error {
-		dayID := "1" // TODO get it from echo
+		dayID := c.Param("dayID")
 
 		foundDay, found := days.Days[dayID]
 		if !found {
@@ -77,8 +77,8 @@ func challengesHandler(days *core.Days) func(echo.Context) error {
 
 func challengeHandler(days *core.Days) func(echo.Context) error {
 	return func(c echo.Context) error {
-		dayID := "1"       // TODO get it from echo
-		challengeID := "1" // TODO get it from echo
+		dayID := c.Param("dayID")
+		challengeID := c.Param("challengeID")
 
 		foundDay, found := days.Days[dayID]
 		if !found {

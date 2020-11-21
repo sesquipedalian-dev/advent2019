@@ -11,3 +11,6 @@ test:
 vendor:
 	go mod tidy
 	go mod vendor
+
+run: build
+	./advent
