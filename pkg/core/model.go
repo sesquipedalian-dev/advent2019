@@ -7,12 +7,12 @@ import (
 )
 
 type Days struct {
-	Days []Day
+	Days map[string]Day
 }
 
 type Day struct {
 	ID         string
-	Challenges []Challenge
+	Challenges map[string]Challenge
 }
 
 type Challenge struct {
