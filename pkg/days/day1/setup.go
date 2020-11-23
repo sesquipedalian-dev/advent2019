@@ -12,6 +12,10 @@ func NewDay1() core.Day {
 				ID:      "1",
 				Handler: core.ChallengeHandlerWrapped(challenge1Handler),
 			},
+			"2": core.Challenge{
+				ID:      "2",
+				Handler: core.ChallengeHandlerWrapped(challenge2Handler),
+			},
 		},
 	}
 }
