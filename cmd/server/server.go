@@ -8,10 +8,11 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/sesquipedalian-dev/advent2019/pkg/core"
+	"github.com/sesquipedalian-dev/advent2019/pkg/setup"
 )
 
 func main() {
-	days := core.ConfigureDays()
+	days := setup.ConfigureDays()
 
 	// Echo instance
 	e := echo.New()

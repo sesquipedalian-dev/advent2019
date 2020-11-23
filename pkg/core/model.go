@@ -22,22 +22,6 @@ type Challenge struct {
 	Handler func(echo.Context) error
 }
 
-func ConfigureDays() *Days {
-	return &Days{
-		Days: map[string]Day{
-			"1": Day{
-				ID: "1",
-				Challenges: map[string]Challenge{
-					"1": Challenge{
-						ID:      "1",
-						Handler: challengeHandlerWrapped(defaultChallengeHandler),
-					},
-				},
-			},
-		},
-	}
-}
-
 type challengeHandler =
 // if httpCode == 0 then we'll use http.StatusOK
 func(bodyString string) (responseBody string, httpCode int)
@@ -46,7 +30,7 @@ func defaultChallengeHandler(bodyString string) (string, int) {
 	return fmt.Sprintf("not implemented %s", bodyString), http.StatusNotImplemented
 }
 
-func challengeHandlerWrapped(handler challengeHandler) func(echo.Context) error {
+func ChallengeHandlerWrapped(handler challengeHandler) func(echo.Context) error {
 	return func(c echo.Context) error {
 		reqBodyBytes, ok := ioutil.ReadAll(c.Request().Body)
 		if ok != nil {
