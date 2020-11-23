@@ -30,7 +30,7 @@ func ConfigureDays() *Days {
 				Challenges: map[string]Challenge{
 					"1": Challenge{
 						ID:      "1",
-						Handler: defaultHandler,
+						Handler: challengeHandlerWrapped(defaultChallengeHandler),
 					},
 				},
 			},
@@ -38,12 +38,27 @@ func ConfigureDays() *Days {
 	}
 }
 
-func defaultHandler(c echo.Context) error {
-	reqBodyBytes, ok := ioutil.ReadAll(c.Request().Body)
-	if ok != nil {
-		return c.String(http.StatusBadRequest, "Can't read request body")
+type challengeHandler =
+// if httpCode == 0 then we'll use http.StatusOK
+func(bodyString string) (responseBody string, httpCode int)
+
+func defaultChallengeHandler(bodyString string) (string, int) {
+	return fmt.Sprintf("not implemented %s", bodyString), http.StatusNotImplemented
+}
+
+func challengeHandlerWrapped(handler challengeHandler) func(echo.Context) error {
+	return func(c echo.Context) error {
+		reqBodyBytes, ok := ioutil.ReadAll(c.Request().Body)
+		if ok != nil {
+			return c.String(http.StatusBadRequest, "Can't read request body")
+		}
+		reqBodyString := string(reqBodyBytes)
+
+		responseBody, httpCode := handler(reqBodyString)
+		if httpCode == 0 {
+			httpCode = http.StatusOK
+		}
+
+		return c.String(httpCode, responseBody)
 	}
-	reqBodyString := string(reqBodyBytes)
-	return c.String(http.StatusNotImplemented,
-		fmt.Sprintf("Not Implemented %s", reqBodyString))
 }
